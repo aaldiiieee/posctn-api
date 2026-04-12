@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: posctn-api
+
+  # Database connection config
+  datasource:
+    url: jdbc:postgresql://localhost:5432/POSCTM
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+  # JPA Connection config
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  # Liquibase config
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+
