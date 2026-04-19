@@ -1,3 +1,28 @@
 databaseChangeLog:
+  # Schema migration
   - include:
-      file: classpath:db/changelog/init.sql
+      file: classpath:db/changelog/schema/20260412093208_create_users_table.sql
+  - include:
+      file: classpath:db/changelog/schema/20260412094450_create_customers_table.sql
+  - include:
+      file: classpath:db/changelog/schema/20260412095227_create_menu_items_table.sql
+  - include:
+      file: classpath:db/changelog/schema/20260412095632_create_transactions_table.sql
+  - include:
+      file: classpath:db/changelog/schema/20260412100814_create_transactions_items_table.sql
+  - include:
+      file: classpath:db/changelog/schema/20260412100927_create_debts_table.sql
+  - include:
+      file: classpath:db/changelog/schema/20260412101439_create_debt_payments_table.sql
+
+  # Data migration
+
+
+
+
+  # Changes migration
+
+
+
+
+  # Rollback migration

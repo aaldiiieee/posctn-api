@@ -10,7 +10,6 @@ public class PosctnApiApplication {
 
 		SpringApplication.run(PosctnApiApplication.class, args);
 
-		System.out.println("Posctn Api Application Started");
 	}
 
 }

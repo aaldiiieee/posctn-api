@@ -17,7 +17,22 @@ spring:
 
   # Liquibase config
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:db/changelog/db.changelog-master.yaml
+    default-schema: public
+
+---
+
+springdoc:
+  api-docs:
+    enabled: true
+
+---
+
+# JWT config
+jwt:
+  secret-key: 25101917875e8390ecd5b749583354a84f2401c45d834d943a9d0fb0376ee1fd
+  expiration: 604800000
+  refresh-expiration: 604800000
 
 
