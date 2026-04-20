@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
         String message = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(err -> err.getField() + ": " + err.getDefaultMessage())
+                .map(err -> err.getDefaultMessage())
                 .findFirst()
                 .orElse("Validation error");
 
@@ -58,5 +58,18 @@ public class GlobalExceptionHandler {
         error.setPath(request.getRequestURI());
 
         return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotFound(NotFoundException ex,
+                                                           HttpServletRequest request) {
+        ErrorResponseDto error = new ErrorResponseDto();
+        error.setErrorCode(ex.getCode());
+        error.setMessage(ex.getMessage());
+        error.setStatus(ex.getStatus().value());
+        error.setTimestamp(Instant.now());
+        error.setPath(request.getRequestURI());
+
+        return new ResponseEntity<>(error, ex.getStatus());
     }
 }

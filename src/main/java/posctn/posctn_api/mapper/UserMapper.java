@@ -1,7 +1,7 @@
 package posctn.posctn_api.mapper;
 
 import org.springframework.stereotype.Component;
-import posctn.posctn_api.dto.request.UserCreateRequestDto;
+import posctn.posctn_api.dto.request.UserRequestDto;
 import posctn.posctn_api.dto.response.UserResponseDto;
 import posctn.posctn_api.model.UserModel;
 
@@ -11,18 +11,18 @@ public class UserMapper {
     public UserResponseDto toDto(UserModel userModel) {
         if (userModel == null) return null;
 
-        UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setId(userModel.getId());
-        userResponseDto.setFullname(userModel.getFullname());
-        userResponseDto.setUsername(userModel.getUsername());
-        userResponseDto.setRole(userModel.getRole());
-        userResponseDto.setActive(userModel.isActive());
-        userResponseDto.setCreatedAt(userModel.getCreatedAt());
+        UserResponseDto response = new UserResponseDto();
+        response.setId(userModel.getId());
+        response.setFullname(userModel.getFullname());
+        response.setUsername(userModel.getUsername());
+        response.setRole(userModel.getRole());
+        response.setActive(userModel.isActive());
+        response.setCreatedAt(userModel.getCreatedAt());
 
-        return userResponseDto;
+        return response;
     }
 
-    public UserModel toEntity(UserCreateRequestDto request) {
+    public UserModel toEntity(UserRequestDto request) {
         if (request == null) return null;
 
         UserModel userModel = new UserModel();

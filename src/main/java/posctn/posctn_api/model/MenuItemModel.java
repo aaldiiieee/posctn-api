@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import posctn.posctn_api.enums.MenuCategoryEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,9 +26,16 @@ public class MenuItemModel {
 
     private BigDecimal price;
 
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private MenuCategoryEnum category;
 
-    private Boolean isActive;
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive;
 
     private LocalDateTime createdAt;
+
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }

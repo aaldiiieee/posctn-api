@@ -1,7 +1,7 @@
 package posctn.posctn_api.service;
 
 import org.springframework.stereotype.Service;
-import posctn.posctn_api.dto.request.UserCreateRequestDto;
+import posctn.posctn_api.dto.request.UserRequestDto;
 import posctn.posctn_api.dto.response.UserResponseDto;
 
 import java.util.List;
@@ -10,17 +10,33 @@ import java.util.List;
 public interface UserService {
 
     /**
-     * Get all users data
+     * Get all users
+     *
+     * @return
      */
     List<UserResponseDto> getAllUsers();
 
     /**
-     * Create user
+     * Create user data
+     *
+     * @param request
+     * @return
      */
-    UserResponseDto createUser(UserCreateRequestDto request);
+    UserResponseDto createUser(UserRequestDto request);
 
     /**
      * Update user
+     *
+     * @param userId
+     * @param request
+     * @return
      */
-    UserResponseDto updateUser(UserCreateRequestDto request);
+    UserResponseDto updateUser(Long userId, UserRequestDto request);
+
+    /**
+     * Delete user
+     *
+     * @param userId
+     */
+    void deleteUser(Long userId);
 }

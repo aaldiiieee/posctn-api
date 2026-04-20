@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ApiPaginatedResponseDto<T> {
-    private List<T> items;
+    private List<T> data;
     private int page;
     private int totalPages;
     private long totalItems;
