@@ -1,11 +1,12 @@
 package posctn.posctn_api.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import posctn.posctn_api.dto.ErrorResponseDto;
+import posctn.posctn_api.dto.response.ErrorResponseDto;
 
 import java.time.Instant;
 
@@ -69,6 +70,17 @@ public class GlobalExceptionHandler {
         error.setStatus(ex.getStatus().value());
         error.setTimestamp(Instant.now());
         error.setPath(request.getRequestURI());
+
+        return new ResponseEntity<>(error, ex.getStatus());
+    }
+
+    @ExceptionHandler(AuthenticationFailedException.class)
+    public ResponseEntity<ErrorResponseDto> handleAuthenticationFailed(AuthenticationFailedException ex,
+                                                                       HttpServletRequest request) {
+        ErrorResponseDto error = new ErrorResponseDto();
+        error.setErrorCode(ex.getCode());
+        error.setMessage(ex.getMessage());
+        error.setStatus(ex.getStatus().value());
 
         return new ResponseEntity<>(error, ex.getStatus());
     }

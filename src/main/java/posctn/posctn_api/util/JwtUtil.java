@@ -1,5 +1,7 @@
 package posctn.posctn_api.util;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +31,24 @@ public class JwtUtil {
                 .compact();
     }
 
+    public String extractUsername(String token) {
+        return parseClaims(token).getSubject();
+    }
 
+    private Claims parseClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(jwtConfig.jwtSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public boolean isTokenValid(String token) {
+        try {
+            parseClaims(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
 }
