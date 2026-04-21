@@ -24,4 +24,11 @@ public class DebtPaymentModel {
     @ManyToOne
     @JoinColumn(name = "debt_id")
     private DebtModel debt;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.paymentDate == null) {
+            this.paymentDate = LocalDateTime.now();
+        }
+    }
 }

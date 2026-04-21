@@ -1,6 +1,6 @@
 package posctn.posctn_api.service;
 
-import posctn.posctn_api.dto.SliceResponseDto;
+import posctn.posctn_api.dto.response.SliceResponseDto;
 import posctn.posctn_api.dto.request.MenuItemListRequestDto;
 import posctn.posctn_api.dto.request.MenuItemRequestDto;
 import posctn.posctn_api.dto.response.MenuItemResponseDto;

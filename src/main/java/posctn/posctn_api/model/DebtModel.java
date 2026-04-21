@@ -2,7 +2,7 @@ package posctn.posctn_api.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import posctn.posctn_api.enums.DebtStatusEnum;
+import posctn.posctn_api.enums.PaymentStatusEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,18 +25,29 @@ public class DebtModel {
     private BigDecimal remainingAmount;
 
     @Enumerated(EnumType.STRING)
-    private DebtStatusEnum status;
+    private PaymentStatusEnum status;
 
     private LocalDateTime createdAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private CustomerModel customer;
 
-    @OneToOne
-    @JoinColumn(name = "transaction_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transaction_id", nullable = false)
     private TransactionModel transaction;
 
-    @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DebtPaymentModel> payments;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        if (this.remainingAmount == null) {
+            this.remainingAmount = this.amount;
+        }
+        if (this.status == null) {
+            this.status = PaymentStatusEnum.UNPAID;
+        }
+    }
 }

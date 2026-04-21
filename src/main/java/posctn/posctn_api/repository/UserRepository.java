@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import posctn.posctn_api.model.UserModel;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long> {
 
@@ -22,4 +24,12 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
      * @return true if the id already exists, false otherwise
      */
     boolean existsById(Long id);
+
+    /**
+     * Find user by username
+     *
+     * @param username
+     * @return
+     */
+    Optional<UserModel> findByUsername(String username);
 }

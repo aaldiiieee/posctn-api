@@ -1,4 +1,4 @@
-package posctn.posctn_api.dto;
+package posctn.posctn_api.dto.response;
 
 import lombok.*;
 

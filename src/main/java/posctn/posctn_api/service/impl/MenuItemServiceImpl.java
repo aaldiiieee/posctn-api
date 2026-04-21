@@ -4,7 +4,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
-import posctn.posctn_api.dto.SliceResponseDto;
+import posctn.posctn_api.dto.response.SliceResponseDto;
 import posctn.posctn_api.dto.request.MenuItemListRequestDto;
 import posctn.posctn_api.dto.request.MenuItemRequestDto;
 import posctn.posctn_api.dto.response.MenuItemResponseDto;

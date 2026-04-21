@@ -1,7 +1,6 @@
-package posctn.posctn_api.dto;
+package posctn.posctn_api.dto.response;
 
 import lombok.*;
-import org.apache.commons.io.input.ObservableInputStream;
 
 import java.util.List;
 

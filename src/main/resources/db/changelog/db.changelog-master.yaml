@@ -21,8 +21,12 @@ databaseChangeLog:
 
 
   # Changes migration
+  - include:
+      file: classpath:db/changelog/changes/20260420081415_add_customer_id_to_transactions_table.sql
+  - include:
+      file: classpath:db/changelog/changes/20260420082955_add_payment_status_to_transactions_table.sql
+  - include:
+      file: classpath:db/changelog/changes/20260420150022_delete_status_to_customers_table.sql
+  - include:
+      file: classpath:db/changelog/changes/20260420172117_update_payment_type_to_transactions_table.sql
 
-
-
-
-  # Rollback migration

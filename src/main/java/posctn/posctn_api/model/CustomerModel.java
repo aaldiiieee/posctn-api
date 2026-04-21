@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import posctn.posctn_api.enums.CustomerStatusEnum;
 
 import java.time.LocalDateTime;
 
@@ -24,9 +23,6 @@ public class CustomerModel {
     private String name;
 
     private String phone;
-
-    @Enumerated(EnumType.STRING)
-    private CustomerStatusEnum status;
 
     private LocalDateTime createdAt;
 }
