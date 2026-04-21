@@ -13,7 +13,6 @@ if [ -z "$LOCATION_FLAG" ] || [ -z "$TITLE" ]; then
   echo "./make_migrate.sh --schema create_user_table"
   echo "./make_migrate.sh --data init_user"
   echo "./make_migrate.sh --changes add_email_to_user"
-  echo "./make_migrate.sh --rollback rollback_user"
   exit 1
 fi
 
@@ -27,9 +26,6 @@ case "$LOCATION_FLAG" in
     ;;
   --changes)
     SUB_DIR="changes"
-    ;;
-  --rollback)
-    SUB_DIR="rollback"
     ;;
   *)
     echo "❌ Flag tidak dikenal"
