@@ -58,7 +58,9 @@ public class DebtServiceImpl implements DebtService {
                             .totalDebt(totalDebt)
                             .totalRemaining(totalRemaining)
                             .totalTransaction(customerDebts.size())
-                            .debts(customerDebts.stream().map(debtMapper::toDto).collect(Collectors.toList()))
+                            .debts(customerDebts.stream()
+                                    .map(debtMapper::toDebtSummaryDto)
+                                    .collect(Collectors.toList()))
                             .build();
                 })
                 .collect(Collectors.toList());

@@ -1,7 +1,6 @@
 package posctn.posctn_api.dto.response;
 
 import lombok.*;
-import posctn.posctn_api.enums.PaymentStatusEnum;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,5 +17,5 @@ public class DebtSummaryResponseDto {
     private BigDecimal totalDebt;
     private BigDecimal totalRemaining;
     private int totalTransaction;
-    private List<DebtResponseDto> debts;
+    private List<DebtSummaryItemResponseDto> debts;
 }

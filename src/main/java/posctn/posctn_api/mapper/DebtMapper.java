@@ -3,7 +3,7 @@ package posctn.posctn_api.mapper;
 import org.springframework.stereotype.Component;
 import posctn.posctn_api.dto.response.DebtPaymentResponseDto;
 import posctn.posctn_api.dto.response.DebtResponseDto;
-import posctn.posctn_api.dto.response.DebtSummaryResponseDto;
+import posctn.posctn_api.dto.response.DebtSummaryItemResponseDto;
 import posctn.posctn_api.model.DebtModel;
 import posctn.posctn_api.model.DebtPaymentModel;
 
@@ -27,12 +27,16 @@ public class DebtMapper {
                 .build();
     }
 
-//    public DebtSummaryResponseDto toDebtSummaryDto(DebtModel debt) {
-//        return DebtSummaryResponseDto.builder()
-//                .customerId(debt.getCustomer().getId())
-//                .customerName(debt.getCustomer().getName())
-//                .totalDebt(debt)
-//    }
+    public DebtSummaryItemResponseDto toDebtSummaryDto(DebtModel debt) {
+        return DebtSummaryItemResponseDto.builder()
+                .id(debt.getId())
+                .transactionId(debt.getTransaction().getId())
+                .amount(debt.getAmount())
+                .remainingAmount(debt.getRemainingAmount())
+                .status(debt.getStatus())
+                .createdAt(debt.getCreatedAt())
+                .build();
+    }
 
     private List<DebtPaymentResponseDto> toPaymentDtoList(List<DebtPaymentModel> payments) {
         if (payments == null) return Collections.emptyList();
