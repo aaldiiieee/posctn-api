@@ -1,5 +1,6 @@
 package posctn.posctn_api.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import posctn.posctn_api.service.TransactionService;
 
 @RestController
 @RequestMapping("/api/v1/transactions")
+@Tag(name = "Transaction Management System", description = "Endpoints for managing transactions")
 public class TransactionController {
 
     private final TransactionService transactionService;

@@ -44,6 +44,11 @@ public class TransactionServiceImpl implements TransactionService {
         this.menuItemRepository = menuItemRepository;
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @Override
     @Transactional
     public TransactionResponseDto createKasbon(KasbonCreateRequestDto request) {

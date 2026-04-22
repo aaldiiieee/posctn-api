@@ -6,7 +6,7 @@ import posctn.posctn_api.dto.response.TransactionResponseDto;
 public interface TransactionService {
 
     /**
-     *
+     * Create kasbon
      * @param request
      * @return
      */
