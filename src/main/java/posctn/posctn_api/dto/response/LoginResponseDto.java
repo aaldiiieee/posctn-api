@@ -11,7 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LoginResponseDto {
     private String token;
-    private String username;
-    private String fullname;
-    private String role;
+    private String tokenType;
+    private Long expiresIn;
 }

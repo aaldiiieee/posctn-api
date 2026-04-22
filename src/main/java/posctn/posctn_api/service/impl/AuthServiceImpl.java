@@ -4,6 +4,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
+import posctn.posctn_api.config.JwtConfig;
 import posctn.posctn_api.dto.request.LoginRequestDto;
 import posctn.posctn_api.dto.response.LoginResponseDto;
 import posctn.posctn_api.exception.AuthenticationFailedException;
@@ -18,13 +19,15 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
+    private final JwtConfig jwtConfig;
 
     public AuthServiceImpl(AuthenticationManager authenticationManager,
                            JwtUtil jwtUtil,
-                           UserRepository userRepository) {
+                           UserRepository userRepository, JwtConfig jwtConfig) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.userRepository = userRepository;
+        this.jwtConfig = jwtConfig;
     }
 
     @Override
@@ -45,9 +48,8 @@ public class AuthServiceImpl implements AuthService {
 
         return new LoginResponseDto(
                 token,
-                user.getUsername(),
-                user.getFullname(),
-                role
+                "Bearer",
+                jwtConfig.getExpiration()
         );
     }
 }
