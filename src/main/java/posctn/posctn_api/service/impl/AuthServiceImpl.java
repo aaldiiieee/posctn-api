@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import posctn.posctn_api.config.JwtConfig;
 import posctn.posctn_api.dto.request.LoginRequestDto;
 import posctn.posctn_api.dto.response.LoginResponseDto;
+import posctn.posctn_api.dto.response.UserResponseDto;
 import posctn.posctn_api.exception.AuthenticationFailedException;
+import posctn.posctn_api.exception.NotFoundException;
+import posctn.posctn_api.mapper.UserMapper;
 import posctn.posctn_api.model.UserModel;
 import posctn.posctn_api.repository.UserRepository;
 import posctn.posctn_api.service.AuthService;
@@ -20,14 +23,16 @@ public class AuthServiceImpl implements AuthService {
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
     private final JwtConfig jwtConfig;
+    private final UserMapper userMapper;
 
     public AuthServiceImpl(AuthenticationManager authenticationManager,
                            JwtUtil jwtUtil,
-                           UserRepository userRepository, JwtConfig jwtConfig) {
+                           UserRepository userRepository, JwtConfig jwtConfig, UserMapper userMapper) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.userRepository = userRepository;
         this.jwtConfig = jwtConfig;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -51,5 +56,13 @@ public class AuthServiceImpl implements AuthService {
                 "Bearer",
                 jwtConfig.getExpiration()
         );
+    }
+
+    @Override
+    public UserResponseDto getCurrentUser(String username) {
+        UserModel user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("User tidak ditemukan"));
+
+        return userMapper.toDto(user);
     }
 }

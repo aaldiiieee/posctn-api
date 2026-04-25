@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import posctn.posctn_api.exception.CustomAuthenticationEntryPoint;
 import posctn.posctn_api.security.CustomUserDetails;
 import posctn.posctn_api.security.JwtAuthFilter;
 
@@ -31,8 +32,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, CustomAuthenticationEntryPoint entryPoint) throws Exception {
         http
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(entryPoint)
+                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.disable())
